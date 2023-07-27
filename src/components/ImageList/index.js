@@ -26,9 +26,11 @@ import { ReactComponent as Payment } from 'assets/images/payment/payment.svg';
 import { ReactComponent as Cart } from 'assets/images/header/cart.svg';
 import check from 'assets/images/payment/check.png';
 import checkoutSuccessIcon from 'assets/images/payment/checkout-success.png';
-import { ReactComponent as DecreaseIcon } from 'assets/images/products/decrease.svg'
-import { ReactComponent as Continue } from 'assets/images/payment/continue.svg'
-
+import { ReactComponent as DecreaseIcon } from 'assets/images/products/decrease.svg';
+import { ReactComponent as Continue } from 'assets/images/payment/continue.svg';
+import { ReactComponent as Menu } from 'assets/images/header/menu.svg';
+import { ReactComponent as SearchIcon } from 'assets/images/header/search-resp.svg';
+import { ReactComponent as CloseIcon } from 'assets/images/header/close.svg';
 
 export {
     product1,
@@ -60,5 +62,8 @@ export {
     Cart,
     checkoutSuccessIcon,
     DecreaseIcon,
-    Continue
+    Continue,
+    Menu,
+    SearchIcon,
+    CloseIcon
 }
