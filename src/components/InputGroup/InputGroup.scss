@@ -1,0 +1,42 @@
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+
+    > label {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 40px;
+        width: 150px;
+
+        i {
+            color: red;
+        }
+    }
+
+    > input {
+        font-size: .8vw;
+        color: #3F3F3F;
+        box-shadow: 0 0 .2vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+        border: none;
+        outline: none;
+        padding: 10px 16px;
+        transition: .4s;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20px;
+        font-family: 'Oswald', sans-serif;
+        width: 100%;
+        min-width: 220px;
+        flex: 1;
+
+        &:hover {
+            box-shadow: 0 0 0 2px rgba(0, 60, 255, 0.4);
+        }
+          
+        &:focus {
+            box-shadow: 0 0 0 2px blue;
+        }
+    }
+}

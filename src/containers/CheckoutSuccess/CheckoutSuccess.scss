@@ -1,0 +1,99 @@
+/* Trong file 'CheckoutSuccess.css' */
+
+/* Container chứa toàn bộ nội dung */
+.checkout-success {
+
+    .checkout-success-container {
+      font-family: 'Oswald', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      width: 40%;
+      min-height: 400px;
+      margin: 5% auto;
+      /* Styling cho heading và paragraph */
+      h1 {
+        color: #00ba00;
+        font-size: 24px;
+      }
+      
+      p {
+        color: #777;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+  
+        svg rect {
+          fill: #777;
+        }
+      }
+      p.checkout-success-price {
+        font-size: 20px;
+      }
+      /* Icon check */
+      .check-icon {
+          img {
+            width: 50px;
+            height: 50px;
+          }
+      }
+      button {
+        margin-top: 1rem;
+        border: 1px solid #777;
+        font-family: 'Oswald', sans-serif;
+        color: #777;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 6px;
+  
+        span {
+          position: absolute;
+          visibility: visible;
+          opacity: 1;
+          transition: all .2s ease-in;
+        }
+        
+        svg {
+          position: absolute;
+          margin-left: -100%;
+          visibility: hidden;
+          opacity: 0;
+          transition: all .2s ease-in-out;
+          z-index: 10;
+        }
+  
+        &:hover {
+          background-color: #EB5757;
+          opacity: 1;
+          border: none;
+  
+          span {
+            position: absolute;
+            visibility: hidden;
+            opacity: 0;
+            transition: all .2s ease-in-out;
+          }
+          
+          svg {
+            margin-left: 0;
+            visibility: visible;
+            opacity: 1;
+            transition: all .3s ease-in-out;
+  
+            path {
+              fill: #FFF;
+            }
+          }
+        }
+      }
+    }
+  }
+    
+    
