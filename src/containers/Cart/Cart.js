@@ -64,14 +64,12 @@ const Cart = () => {
 
     const handleCheckout = () => {
         if(token) {
-            navigate("/payment");
-            return;
+            return navigate("/payment");
         } else {
             toast.warning("LOG IN TO CONTINUE PLEASE!", {
                 position: toast.POSITION.TOP_CENTER,
             })
-            navigate("/login");
-            return;
+            return navigate("/login");
         }
     }
 
