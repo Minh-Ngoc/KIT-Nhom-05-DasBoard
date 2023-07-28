@@ -12,6 +12,7 @@ import model3 from "assets/images/brandads/model3.svg";
 import { Button } from "components/Button";
 
 const AdsStyled = styled.div`
+  max-width: 100%;
   .title-chose {
     color: #000;
     text-align: center;
@@ -21,11 +22,12 @@ const AdsStyled = styled.div`
     margin-bottom: 5px;
   }
   .ads {
+    width: 100%;
     margin-top: 30px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 50px;
   }
   .banner-left {
     display: flex;
@@ -39,13 +41,13 @@ const AdsStyled = styled.div`
       #f1f0f0 10.94%,
       #f3f0ef 100%
     );
-    width: 910px;
+    width: 100%;
     height: 434px;
     display: flex;
   }
   .new {
     height: 434px;
-    width: 910px;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     background: linear-gradient(
@@ -68,7 +70,7 @@ const AdsStyled = styled.div`
   }
   .title {
     color: #000;
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 0;
@@ -81,7 +83,7 @@ const AdsStyled = styled.div`
     margin-top: 7px;
   }
   .banner-right {
-    width: 910px;
+    width: 50%;
     height: 898px;
     display: flex;
     justify-content: flex-end;
@@ -113,22 +115,66 @@ const AdsStyled = styled.div`
     letter-spacing: 0.25px;
     margin-bottom: 50px;
   }
+  @media screen and (max-width: 767px) {
+    .banner-left {
+      width: 100%;
+    }
+    .banner-right {
+      width: 100%;
+      height: 500px;
+      img {
+        width: 100%;
+      }
+      .title3 {
+        font-size: 48px;
+        margin-bottom: 25px;
+      }
+      .des3 {
+        display: none;
+      }
+      button {
+        width: 150px;
+      }
+    }
+    .look {
+      justify-content: center;
+    }
+    .look img {
+      display: none;
+    }
+    .new img {
+      display: none;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .banner-right {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+      .info3 {
+        left: 5%;
+      }
+    }
+  }
 `;
 
 const ChoseBrand = styled.div`
   border: 2px solid #c4c4c4;
-  width: 100%;
-  height: 198px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0 12px 0 12px;
   box-sizing: border-box;
+  flex-wrap: wrap;
   svg:hover {
     rect {
       fill: #f0f2f2;
       transition: 3ms;
     }
+  }
+  @media screen and (max-width: 768px) {
+    padding: 0;
   }
 `;
 
@@ -159,7 +205,9 @@ export const BrandAds = () => {
           </div>
           <div className="new">
             <div className="info des2">
-              <p className="title">brand new style</p>
+              <p className="title">
+                brand <br /> new style
+              </p>
               <p className="des">Popular clothing brands</p>
               <Button>see offers</Button>
             </div>

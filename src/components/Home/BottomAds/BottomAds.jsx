@@ -132,6 +132,43 @@ const Explore = styled.div`
       top: 10%;
     }
   }
+  @media screen and (max-width: 767px) {
+    img {
+      width: 100%;
+    }
+    .explore-info {
+      position: absolute;
+      margin: 10px;
+      p {
+        font-size: 23px;
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+      .vector {
+        display: none;
+      }
+      button {
+        width: 125px;
+        height: 45px;
+      }
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    img {
+      width: 100%;
+    }
+    .explore-info {
+      position: absolute;
+      margin: 10px;
+      p {
+        font-size: 48px;
+        margin-bottom: 30px;
+      }
+      .vector {
+        display: none;
+      }
+    }
+  }
 `;
 
 export const BottomAds = () => {

@@ -125,6 +125,20 @@ const FooterStyled = styled.div`
     color: #fff;
     text-transform: uppercase;
   }
+  @media screen and (max-width: 767px) {
+    height: 390px;
+    padding: 30px 20px 40px;
+    .m {
+      display: none;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    height: 450px;
+    padding: 50px 20px 40px;
+    .t {
+      display: none;
+    }
+  }
 `;
 
 export const Footer = () => {
@@ -132,7 +146,7 @@ export const Footer = () => {
     <FooterStyled>
       <div className="top">
         <div className="logo">lisa</div>
-        <div className="items">
+        <div className="items m t">
           <p className="title">features</p>
           <div className="list">
             <a href="/">men</a>
@@ -145,7 +159,7 @@ export const Footer = () => {
             <a href="/">accessories</a>
           </div>
         </div>
-        <div className="items">
+        <div className="items m t">
           <p className="title">menu</p>
           <div className="list">
             <a href="/">About us</a>
@@ -178,7 +192,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="items">
+        <div className="items m">
           <p className="title">follow us</p>
           <div className="social">
             <img src={fb} alt="facebook icon" />
@@ -193,7 +207,7 @@ export const Footer = () => {
             <span>instagram</span>
           </div>
         </div>
-        <div className="items">
+        <div className="items m">
           <p className="title">join us</p>
           <form className="join-form">
             <p className="sub-title">Subscribe to our newsletters</p>

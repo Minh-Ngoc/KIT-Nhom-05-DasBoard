@@ -90,12 +90,12 @@ export const Product = ({
   color,
   ...rest
 }) => {
-  const hasDiscount = oldprice > price;
-
   // Split the color and image URLs into arrays
   const priceApi = price ? price.split(",") : [];
   const firstPrice = priceApi.length > 0 ? priceApi[0].trim() : null;
-  const colorOptions = color ? color.split(",") : [];
+  const colorOptions = color
+    ? color.split(",").filter((el, index, arr) => arr.indexOf(el) === index)
+    : [];
   const imageUrls = bgImage ? bgImage.split(",") : [];
   const firstImageUrl = imageUrls.length > 0 ? imageUrls[0].trim() : null;
 
@@ -107,14 +107,7 @@ export const Product = ({
       {/* {tag ? <div className="tag">{tag}</div> : null} */}
       <p className="brand">{brand}</p>
       <p className="name">{name}</p>
-      {hasDiscount ? (
-        <div className="discount">
-          <p className="new">{USDollar.format(price)}</p>
-          <p className="old">{USDollar.format(oldprice)}</p>
-        </div>
-      ) : (
-        <p className="price">{USDollar.format(firstPrice)}</p>
-      )}
+      {!price ? null : <p className="price">{USDollar.format(firstPrice)}</p>}
       {colorOptions.length > 0 ? (
         <div className="colors">
           {colorOptions.map((colorOption, index) => (
@@ -123,7 +116,7 @@ export const Product = ({
               width={"25px"}
               height={"25px"}
               borderColor={null}
-              bgColor={colorOption.trim()} // Trim the color value to remove any leading/trailing spaces
+              bgColor={colorOption.trim()}
             />
           ))}
         </div>

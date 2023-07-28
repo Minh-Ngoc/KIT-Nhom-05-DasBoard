@@ -16,6 +16,7 @@ export const GET_USER_BY_ID = `${DOMAIN}/api/user/users/getuserbyid`;
 
 
 export const ALL_PRODUCTS = `${DOMAIN}/products/getallproductsandstocks`
+export const BEST_SELLER = `${DOMAIN}/products/getbestseller`
 
 export const ADD_TO_CART = `${DOMAIN}/add-cart`;
 export const GET_CART = `${DOMAIN}/cart`;

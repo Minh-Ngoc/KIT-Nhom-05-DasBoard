@@ -13,6 +13,7 @@ import { API_FILTER, DATA_FILTER } from "api";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ReactSlider from "react-slider";
+import { ProductCarousel } from "components/ProductCarousel";
 
 const ShopStyled = styled.div`
   overflow: hidden;
@@ -59,6 +60,39 @@ const ShopStyled = styled.div`
     color: #828282;
     font-size: 14px;
     font-weight: 400;
+  }
+  @media screen and (max-width: 767px) {
+    .banner {
+      display: flex;
+      position: relative;
+      img {
+        width: 50%;
+      }
+      .info-banner {
+        position: absolute;
+        right: -10%;
+        top: -50%;
+        width: 50%;
+      }
+      .vector {
+        display: none;
+      }
+      button {
+        display: none;
+      }
+      .title-banner {
+        font-size: 14px;
+      }
+      .des-banner {
+        font-size: 10px;
+        margin-top: 5px;
+      }
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .banner img {
+      display: none;
+    }
   }
 `;
 
@@ -116,6 +150,7 @@ const QueryProducts = styled.div`
     font-size: 12.5px;
     font-weight: 400;
     text-transform: uppercase;
+    font-family: "Oswald";
   }
   .allcolor {
     margin-right: 40px;
@@ -224,6 +259,44 @@ const QueryProducts = styled.div`
   .link {
     text-decoration: none;
   }
+  .filter-mobile {
+    display: none;
+  }
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+    .left {
+      width: 100%;
+    }
+    .right {
+      width: 100%;
+      margin-top: 50px;
+    }
+    .mid-banner {
+      .info-mid {
+        left: 30%;
+        bottom: 10%;
+      }
+      .vector {
+        display: none;
+      }
+      .des-mid {
+        display: none;
+      }
+    }
+    .filter-mobile {
+      display: block;
+      margin-top: 20px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .left {
+      width: 35%;
+    }
+    .info-mid {
+      left: -30%;
+    }
+  }
 `;
 
 const RangeStyled = styled.div`
@@ -264,6 +337,7 @@ const MAX = 300;
 
 const Shop = () => {
   const dispatch = useDispatch();
+  const [isFilterVisible, setIsFilterVisible] = useState(true);
   // Set state for data
   const [values, setValues] = useState([MIN, MAX]);
   const [brands, setBrands] = useState();
@@ -281,8 +355,12 @@ const Shop = () => {
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
   const splitBrand = brands ? brands.split(",") : [];
-  const splitSize = sizes ? sizes.split(",") : [];
-  const splitColor = colors ? colors.split(",") : [];
+  const splitSize = sizes
+    ? sizes.split(",").filter((el, index, arr) => arr.indexOf(el) === index)
+    : [];
+  const splitColor = colors
+    ? colors.split(",").filter((el, index, arr) => arr.indexOf(el) === index)
+    : [];
 
   // Select brand
   const [selectedBrand, setSelectedBrand] = useState("");
@@ -351,113 +429,127 @@ const Shop = () => {
         </div>
         <div className="redirect">Home / Women Dress / Best Chose</div>
         <QueryProducts>
-          <div className="left">
-            <div>
-              <div className="filter-title">
-                <p>Brand</p>
-                <div className="minus" />
-              </div>
-              <div className="allcheck">
+          <Button
+            width={"100px"}
+            height={"40px"}
+            bgColor={"#000"}
+            textColor={"#fff"}
+            className="filter-mobile"
+            onClick={() => setIsFilterVisible(!isFilterVisible)}
+          >
+            Filter
+          </Button>
+          {isFilterVisible && (
+            <div className="left">
+              <div>
+                <div className="filter-title">
+                  <p>Brand</p>
+                  <div className="minus" />
+                </div>
                 <div className="allcheck">
-                  {splitBrand.map((brand) => (
-                    <label key={brand}>
-                      <input
-                        className="checkbox"
-                        type="checkbox"
-                        name="brandGroup"
-                        value={brand}
-                        onChange={() => handleBrandSelect(brand)} // Add onChange event to capture the selected brand
-                        checked={selectedBrand === brand} // Set the checked attribute based on the selected brand
-                      />{" "}
-                      {brand}
-                    </label>
+                  <div className="allcheck">
+                    {splitBrand.map((brand) => (
+                      <label key={brand}>
+                        <input
+                          className="checkbox"
+                          type="checkbox"
+                          name="brandGroup"
+                          value={brand}
+                          onChange={() => handleBrandSelect(brand)} // Add onChange event to capture the selected brand
+                          checked={selectedBrand === brand} // Set the checked attribute based on the selected brand
+                        />{" "}
+                        {brand}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="filter-title">
+                  <p>Size</p>
+                  <div className="minus" />
+                </div>
+                <div className="allsize">
+                  {splitSize.map((size) => (
+                    <Button
+                      key={size}
+                      className={`size ${
+                        selectedSize === size ? "choose" : ""
+                      }`}
+                      onClick={() => handleSizeSelect(size)}
+                    >
+                      {size}
+                    </Button>
                   ))}
                 </div>
               </div>
-            </div>
-            <div>
-              <div className="filter-title">
-                <p>Size</p>
-                <div className="minus" />
-              </div>
-              <div className="allsize">
-                {splitSize.map((size) => (
-                  <Button
-                    key={size}
-                    className={`size ${selectedSize === size ? "choose" : ""}`}
-                    onClick={() => handleSizeSelect(size)}
-                  >
-                    {size}
-                  </Button>
-                ))}
-              </div>
-            </div>
-            <div>
-              <div className="filter-title">
-                <p>Color</p>
-                <div className="minus" />
-              </div>
-              <div className="allcolor">
-                {splitColor.map((color) => (
-                  <div className="color" key={color}>
-                    <Button
-                      bgColor={color}
-                      className={`color ${
-                        selectedColor === color ? "selected" : ""
-                      }`}
-                      onClick={() => handleColorSelect(color)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <div className="filter-title">
-                <p>Price Range</p>
-                <div className="minus" />
-              </div>
-              <RangeStyled>
-                <div className="price">
-                  <p>{values[0]} EUR</p>
-                  <p>{values[1]} EUR</p>
+              <div>
+                <div className="filter-title">
+                  <p>Color</p>
+                  <div className="minus" />
                 </div>
-                <ReactSlider
-                  className="customSlider"
-                  trackClassName="customSlider-track"
-                  value={values}
-                  onChange={setValues}
-                  min={MIN}
-                  max={MAX}
-                />
-              </RangeStyled>
-              <div className="button-range">
-                <Button
-                  bgColor={"#C4C4C4"}
-                  textColor={"#828282"}
-                  fontSize={14}
-                  borderColor={"#828282"}
-                  width={"114px"}
-                  height={"40px"}
-                  onClick={() => applyFilter()}
-                >
-                  apply
-                </Button>
-                <Button
-                  bgColor={"#C4C4C4"}
-                  textColor={"#828282"}
-                  fontSize={14}
-                  borderColor={"#828282"}
-                  width={"114px"}
-                  height={"40px"}
-                  onClick={() => resetFilter()}
-                >
-                  reset
-                </Button>
+                <div className="allcolor">
+                  {splitColor.map((color) => (
+                    <div className="color" key={color}>
+                      <Button
+                        bgColor={color}
+                        className={`color ${
+                          selectedColor === color ? "selected" : ""
+                        }`}
+                        onClick={() => handleColorSelect(color)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <div className="filter-title">
+                  <p>Price Range</p>
+                  <div className="minus" />
+                </div>
+                <RangeStyled>
+                  <div className="price">
+                    <p>{values[0]} EUR</p>
+                    <p>{values[1]} EUR</p>
+                  </div>
+                  <ReactSlider
+                    className="customSlider"
+                    trackClassName="customSlider-track"
+                    value={values}
+                    onChange={setValues}
+                    min={MIN}
+                    max={MAX}
+                  />
+                </RangeStyled>
+                <div className="button-range">
+                  <Button
+                    bgColor={"#C4C4C4"}
+                    textColor={"#828282"}
+                    fontSize={14}
+                    borderColor={"#828282"}
+                    width={"114px"}
+                    height={"40px"}
+                    onClick={() => applyFilter()}
+                  >
+                    apply
+                  </Button>
+                  <Button
+                    bgColor={"#C4C4C4"}
+                    textColor={"#828282"}
+                    fontSize={14}
+                    borderColor={"#828282"}
+                    width={"114px"}
+                    height={"40px"}
+                    onClick={() => resetFilter()}
+                  >
+                    reset
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
+          )}
           <div className="right">
-            <div className="sort">
+            {/* <div className="sort">
               <select className="select type">
                 <option value="0">price (high to low)</option>
                 <option value="1">price (low to high)</option>
@@ -466,7 +558,7 @@ const Shop = () => {
                 <option value="0">48</option>
                 <option value="1">24</option>
               </select>
-            </div>
+            </div> */}
             <div className="products">
               {filteredProducts.map((card) => (
                 <Link
@@ -501,23 +593,7 @@ const Shop = () => {
               </div>
               <img className="model" src={model} alt="model" />
             </div>
-            <div className="products">
-              {filteredProducts.map((card) => (
-                <Link
-                  key={card.productId}
-                  to={`/products/${card.productId}`}
-                  className="link"
-                >
-                  <Product
-                    name={card.productName}
-                    bgImage={card.urlImage}
-                    brand={card.brand}
-                    price={card.priceStock}
-                    color={card.colorName}
-                  />
-                </Link>
-              ))}
-            </div>
+            <ProductCarousel />
           </div>
         </QueryProducts>
       </ShopStyled>

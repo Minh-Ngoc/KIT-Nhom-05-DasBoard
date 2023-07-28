@@ -16,6 +16,7 @@ const DashStyled = styled.div`
   .bottom {
     display: flex;
     gap: 130px;
+    flex-wrap: wrap;
   }
   .cate {
     color: #000;
@@ -43,7 +44,22 @@ const DashStyled = styled.div`
     gap: 10px;
   }
   button {
-    font-family: 'Oswald', sans-serif;
+    font-family: "Oswald", sans-serif;
+  }
+  @media screen and (max-width: 767px) {
+    .info, .contact, .news, .addbook {
+      width: 100%;
+      padding-left: 50px;
+      box-sizing: border-box;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .info, .contact, .news, .addbook {
+      width: 100%;
+      padding-left: 50px;
+      box-sizing: border-box;
+    }
+
   }
 `;
 

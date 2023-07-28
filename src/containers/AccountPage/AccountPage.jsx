@@ -25,7 +25,7 @@ const AccountStyled = styled.div`
   }
   .frame {
     width: 1454px;
-    height: 716px;
+    padding-bottom: 100px;
     border: 1px solid #c4c4c4;
     background: #fff;
     display: flex;
@@ -59,6 +59,15 @@ const AccountStyled = styled.div`
     .active {
       color: #000;
       background: #f0f2f2;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .frame {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      align-items: center;
     }
   }
 `;

@@ -1,5 +1,10 @@
+import { BEST_SELLER } from "api";
+import axios from "axios";
 import { Product } from "components/Product";
+import { useEffect } from "react";
+import { useState } from "react";
 import Carousel from "react-multi-carousel";
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 const responsive = {
@@ -42,10 +47,21 @@ const CarouselStyled = styled.div`
     top: 40%;
     right: calc(2% + 1px);
   }
+  .link {
+    text-decoration: none;
+  }
 `;
 
-export const ProductCarousel = ({ productList }) => {
-  // const dispatch = useDispatch();
+export const ProductCarousel = () => {
+  const [bestSell, setBestSell] = useState([]);
+  useEffect(() => {
+    axios
+      .get(BEST_SELLER)
+      .then((res) => setBestSell(res.data.product))
+      .catch((error) => {
+        console.error("Error fetching best seller:", error);
+      });
+  }, []);
   return (
     <CarouselStyled>
       <Carousel
@@ -54,14 +70,14 @@ export const ProductCarousel = ({ productList }) => {
         keyBoardControl={true}
         removeArrowOnDeviceType={["tablet", "mobile"]}
       >
-        {productList?.map((card, index) => (
-          <Product
-            key={card.productId}
-            name={card.productName}
-            bgImage={card.urlImage}
-            brand={card.brand}
-            price={card.priceStock}
-          />
+        {bestSell.map((card, index) => (
+          <Link to={`/products/${card.productId}`} className="link">
+            <Product
+              name={card.productName}
+              bgImage={card.image}
+              brand={card.brands}
+            />
+          </Link>
         ))}
       </Carousel>
     </CarouselStyled>

@@ -46,6 +46,19 @@ const HFStyled = styled.div`
   .link {
     text-decoration: none;
   }
+  @media screen and (max-width: 767px) {
+    .left {
+      display: none;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .left {
+      width: 30%;
+    }
+    .products {
+      justify-content: center;
+    }
+  }
 `;
 
 export const HomeFilters = () => {

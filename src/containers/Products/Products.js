@@ -28,8 +28,8 @@ const Products = () => {
     }, [dispatch]);
 
     const imageList = productsStore.product?.urlImage?.split(',') || [];
-    const sizeList = productsStore.product?.sizeName?.split(',') || [];
-    const colorList = productsStore.product?.colorName?.split(',') || [];
+    const sizeList = productsStore.product?.sizeName?.split(',').filter((el, index, arr) => arr.indexOf(el) === index) || [];
+    const colorList = productsStore.product?.colorName?.split(',').filter((el, index, arr) => arr.indexOf(el) === index) || [];
     const priceList = productsStore.product?.priceStock?.split(',') || [];
 
     console.log(productsStore.product)

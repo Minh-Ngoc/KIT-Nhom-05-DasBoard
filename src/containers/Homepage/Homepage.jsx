@@ -11,7 +11,7 @@ import mid from "assets/images/home/midbanner.svg";
 import { Button } from "components/Button";
 import { BottomAds, BrandAds, HomeBlog, HomeFilters } from "components/Home";
 import { ProductCarousel } from "components/ProductCarousel";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 const HomeStyled = styled.div`
@@ -55,6 +55,7 @@ const HomeStyled = styled.div`
     top: 20%;
   }
   .bestsell {
+    height: 650px;
     width: 100%;
   }
   .bestsell-title {
@@ -64,6 +65,41 @@ const HomeStyled = styled.div`
     font-weight: 500;
     text-transform: uppercase;
     text-align: center;
+  }
+  @media screen and (max-width: 767px) {
+    .mid-banner {
+      width: 100%;
+      .info-mid {
+        padding: 20px 10px;
+      }
+      .title-mid {
+        margin-bottom: 0;
+        font-size: 36px;
+      }
+      .des-mid {
+        font-size: 16px;
+      }
+    }
+    .vector {
+      display: none;
+    }
+    .bestsell-title {
+      margin: 50px 0;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .info-mid {
+      padding: 50px 50px;
+    }
+    .title-mid {
+      margin-bottom: 0;
+    }
+    .vector {
+      display: none;
+    }
+    .bestsell-title {
+      margin: 60px 0;
+    }
   }
 `;
 
@@ -117,10 +153,38 @@ const BgBanner = styled.div`
     bottom: 0%;
     transform: translate(10%, 6%);
   }
+  @media screen and (max-width: 767px) {
+    height: 400px;
+    flex-direction: column-reverse;
+    button {
+      margin-left: 100px;
+      width: 150px;
+      height: 45px;
+    }
+    .vector {
+      display: none;
+    }
+    .text {
+      display: none;
+    }
+    .model {
+      left: -45%;
+    }
+    .model1 {
+      height: 253px;
+    }
+    .model2 {
+      height: 319px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .right {
+      display: none;
+    }
+  }
 `;
 
 const Homepage = () => {
-  const productsStore = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -174,7 +238,7 @@ const Homepage = () => {
         </div>
         <div className="bestsell">
           <p className="bestsell-title">best sellers</p>
-          <ProductCarousel productList={productsStore.listProduct} />
+          <ProductCarousel />
         </div>
         <BottomAds />
         <HomeBlog />
