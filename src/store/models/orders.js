@@ -76,8 +76,6 @@ export const orders = {
                     position: toast.POSITION.TOP_CENTER,
                 }))
         }
-
-
     }),
 
     selectors: (slice, createSelector) => ({

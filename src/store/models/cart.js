@@ -78,9 +78,13 @@ export const cart = {
         },
         async removeAllCart() {
             await axios.delete(`${CLEAR_CART}`)
-                .then(res => toast.success("DELETE ALL PRODUCTS IN CART SUCCESSFULLY", {
-                    position: toast.POSITION.TOP_CENTER,
-                }))
+                .then(res => {
+                    dispatch.cart.fetchCart()
+
+                    toast.success("DELETE ALL PRODUCTS IN CART SUCCESSFULLY", {
+                        position: toast.POSITION.TOP_CENTER,
+                    })
+                })
                 .catch(err => toast.success("CLEARING ALL PRODUCTS IN CART FAILURE", {
                     position: toast.POSITION.TOP_CENTER,
                 }))
