@@ -63,9 +63,9 @@ const Cart = () => {
     }, [dispatch.cart]);
 
     const handleCheckout = () => {
-        if(token) {
+        if(token !== "") {
             return navigate("/payment");
-        } else {
+        } else if(token === "" || token === false) {
             toast.warning("LOG IN TO CONTINUE PLEASE!", {
                 position: toast.POSITION.TOP_CENTER,
             })
