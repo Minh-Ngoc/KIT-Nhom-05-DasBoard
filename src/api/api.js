@@ -1,5 +1,5 @@
-export const DOMAIN = "http://18.140.101.238:8085";
-
+// export const DOMAIN = "http://18.140.101.238:8085";
+export const DOMAIN = "https://danielaws.tk/group5";
 
 export const GET_PRODUCTS = `${DOMAIN}/products/getAllProductInfo`;
 export const GET_PRODUCT_BY_ID = `${DOMAIN}/products/getproductbyid`;
