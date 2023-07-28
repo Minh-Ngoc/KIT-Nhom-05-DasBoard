@@ -4,7 +4,7 @@ import { CHECKOUT_CODE, CREATE_PAYMENT, CHECKOUT_ONLINE, GET_ORDERS, GET_ORDER_B
 import Cookies from "js-cookie";
 
 const userId = Cookies.get('userId');
-const token = Cookies.get('token');
+const token = Cookies.get("token");
 const headers = {
     'Authorization': `Bearer ${token}`,
     'Content-Type': 'application/json',
@@ -48,25 +48,17 @@ export const orders = {
                 }))
         },
         async checkoutCode() {
-            try {
-                await axios.post(CHECKOUT_CODE, null, { headers });
+            return await axios.post(CHECKOUT_CODE, null, { headers })
+            .then(res => {
+                dispatch.cart.fetchCart();
                 toast.success("CHECKOUT SUCCESSFULLY", {
                     position: toast.POSITION.TOP_CENTER,
-                });
-                
-                dispatch.cart.fetchCart();
-                // Xử lý kết quả khi checkout thành công (nếu cần)
-                // Ví dụ: dispatch action để cập nhật trạng thái của ứng dụng sau khi checkout thành công
-                // dispatch({ type: 'checkoutSuccess', payload: response.data });
-            } catch (error) {
-                toast.error("CHECKOUT FAILURE", {
-                    position: toast.POSITION.TOP_CENTER,
-                });
-
-                // Xử lý lỗi khi checkout thất bại (nếu cần)
-                // Ví dụ: dispatch action để xử lý lỗi hoặc hiển thị thông báo lỗi cho người dùng
-                // dispatch({ type: 'checkoutFailure', payload: error.message });
-            }
+                })
+            })
+            .catch(error => toast.error("CHECKOUT FAILURE", {
+                position: toast.POSITION.TOP_CENTER,
+                })) 
+            
         },
         async createPayment() {
             await axios.post(CREATE_PAYMENT)
