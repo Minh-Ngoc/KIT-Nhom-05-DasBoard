@@ -85,7 +85,7 @@ export const cart = {
                     position: toast.POSITION.TOP_CENTER,
                     })
                 })
-                .catch(err => toast.success("CLEARING ALL PRODUCTS IN CART FAILURE", {
+                .catch(err => toast.error("CLEARING ALL PRODUCTS IN CART FAILURE", {
                     position: toast.POSITION.TOP_CENTER,
                 }))
         },

@@ -9,6 +9,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Stepper from "components/Stepper";
 import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 const token = Cookies.get("token");
 
@@ -62,11 +63,16 @@ const Cart = () => {
     }, [dispatch.cart]);
 
     const handleCheckout = () => {
-        if(!token) {
+        if(token) {
+            navigate("/payment");
+            return;
+        } else {
+            toast.warning("LOG IN TO CONTINUE PLEASE!", {
+                position: toast.POSITION.TOP_CENTER,
+            })
             navigate("/login");
             return;
         }
-        navigate("/payment");
     }
 
     useEffect(() => {
