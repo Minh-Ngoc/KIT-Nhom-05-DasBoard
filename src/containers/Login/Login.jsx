@@ -18,6 +18,7 @@ const LoginStyled = styled.div`
   width: 100vw;
   display: flex;
   overflow: hidden;
+  font-family: 'Oswald', sans-serif;
   .div_left {
     height: 100vh;
     width: 50%;

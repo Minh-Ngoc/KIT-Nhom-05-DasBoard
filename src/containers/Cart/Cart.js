@@ -11,8 +11,6 @@ import Stepper from "components/Stepper";
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 
-const token = Cookies.get("token");
-
 const Cart = () => {
     const page = "Shopping Cart";
     const navigate = useNavigate();
@@ -63,6 +61,8 @@ const Cart = () => {
     }, [dispatch.cart]);
 
     const handleCheckout = () => {
+        const token = Cookies.get("token");
+        
         if(token !== "") {
             return navigate("/payment");
         } else if(token === "" || token === false) {
