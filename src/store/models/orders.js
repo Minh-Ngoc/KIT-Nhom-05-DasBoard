@@ -49,21 +49,12 @@ export const orders = {
         },
         async checkoutCode() {
             try {
-
-                if (!token) {
-                    return toast.error("Token not found", {
-                        position: toast.POSITION.TOP_CENTER,
-                    });
-                }
-
                 await axios.post(CHECKOUT_CODE, null, { headers });
-
                 toast.success("CHECKOUT SUCCESSFULLY", {
                     position: toast.POSITION.TOP_CENTER,
                 });
-
+                
                 dispatch.cart.fetchCart();
-
                 // Xử lý kết quả khi checkout thành công (nếu cần)
                 // Ví dụ: dispatch action để cập nhật trạng thái của ứng dụng sau khi checkout thành công
                 // dispatch({ type: 'checkoutSuccess', payload: response.data });
