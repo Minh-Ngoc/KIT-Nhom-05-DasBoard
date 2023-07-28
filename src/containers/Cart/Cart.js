@@ -10,11 +10,10 @@ import { useNavigate } from "react-router-dom";
 import Stepper from "components/Stepper";
 import Cookies from 'js-cookie';
 
-const userId = Cookies.get("userId");
+const token = Cookies.get("token");
 
 const Cart = () => {
     const page = "Shopping Cart";
-    const token = Cookies.get("token");
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart.products);

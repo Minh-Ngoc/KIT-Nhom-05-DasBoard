@@ -48,7 +48,7 @@ export const cart = {
                         position: toast.POSITION.TOP_CENTER,
                     })
                 })
-                .catch(err => toast.error("MAXIMUM QUANTITY OF PRODUCTS IN STOCK", {
+                .catch(err => toast.error("ADDING PRODUCTS TO CART FAILURE", {
                     position: toast.POSITION.TOP_CENTER,
                 }));
         },
