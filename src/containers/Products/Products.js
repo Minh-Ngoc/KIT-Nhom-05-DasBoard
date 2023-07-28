@@ -1,5 +1,6 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import './Products.scss';
+import './ResponsiveProduct.scss';
 import Tab from "components/Tab";
 import { 
     Heart, Checked, Zoom, Facebook, Twitter, Pinterest, Instagram, HideDetail, ShowDetail
@@ -31,8 +32,6 @@ const Products = () => {
     const sizeList = productsStore.product?.sizeName?.split(',').filter((el, index, arr) => arr.indexOf(el) === index) || [];
     const colorList = productsStore.product?.colorName?.split(',').filter((el, index, arr) => arr.indexOf(el) === index) || [];
     const priceList = productsStore.product?.priceStock?.split(',') || [];
-
-    console.log(productsStore.product)
 
     const description = productsStore.product?.description;
 
