@@ -8,10 +8,13 @@ import { Save, Close, HideDetail, ShowDetail } from 'components/ImageList';
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Stepper from "components/Stepper";
+import Cookies from 'js-cookie';
+
+const userId = Cookies.get("userId");
 
 const Cart = () => {
     const page = "Shopping Cart";
-
+    const token = Cookies.get("token");
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart.products);
@@ -60,6 +63,10 @@ const Cart = () => {
     }, [dispatch.cart]);
 
     const handleCheckout = () => {
+        if(!token) {
+            navigate("/login");
+            return;
+        }
         navigate("/payment");
     }
 
