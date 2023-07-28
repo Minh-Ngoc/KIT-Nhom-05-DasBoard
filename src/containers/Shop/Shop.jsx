@@ -256,6 +256,9 @@ const QueryProducts = styled.div`
     border: 1px solid #000;
     color: #000;
   }
+  .notfound {
+    font-size: 36px;
+  }
   .link {
     text-decoration: none;
   }
@@ -560,21 +563,25 @@ const Shop = () => {
               </select>
             </div> */}
             <div className="products">
-              {filteredProducts.map((card) => (
-                <Link
-                  key={card.productId}
-                  to={`/products/${card.productId}`}
-                  className="link"
-                >
-                  <Product
-                    name={card.productName}
-                    bgImage={card.urlImage}
-                    brand={card.brand}
-                    price={card.priceStock}
-                    color={card.colorName}
-                  />
-                </Link>
-              ))}
+              {filteredProducts.length < 1 ? (
+                <p className="notfound">Product does not exist!</p>
+              ) : (
+                filteredProducts.map((card) => (
+                  <Link
+                    key={card.productId}
+                    to={`/products/${card.productId}`}
+                    className="link"
+                  >
+                    <Product
+                      name={card.productName}
+                      bgImage={card.urlImage}
+                      brand={card.brand}
+                      price={card.priceStock}
+                      color={card.colorName}
+                    />
+                  </Link>
+                ))
+              )}
             </div>
             <div className="mid-banner">
               <div className="info-mid">
