@@ -12,9 +12,9 @@ import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 const userId = Cookies.get("userId")
+const token = Cookies.get("token");
 
 const Payment = () => {
-    const token = Cookies.get("token");
     const page = "Create Payment";
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -70,8 +70,7 @@ const Payment = () => {
         toast.warning("PLEASE LOGIN TO SHOP", {
             position: toast.POSITION.TOP_CENTER,
         });
-        navigate("/login");
-        return;
+        return navigate("/login");
     } 
 
     return (

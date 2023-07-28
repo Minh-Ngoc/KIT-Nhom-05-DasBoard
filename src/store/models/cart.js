@@ -82,7 +82,7 @@ export const cart = {
                     dispatch.cart.fetchCart()
 
                     toast.success("DELETE ALL PRODUCTS IN CART SUCCESSFULLY", {
-                        position: toast.POSITION.TOP_CENTER,
+                    position: toast.POSITION.TOP_CENTER,
                     })
                 })
                 .catch(err => toast.success("CLEARING ALL PRODUCTS IN CART FAILURE", {
