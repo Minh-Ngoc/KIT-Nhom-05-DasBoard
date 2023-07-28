@@ -51,7 +51,7 @@ const Payment = () => {
                 })
                 setTimeout(() => navigate("/cart"), 3000);
             }
-        }, 100)
+        }, 1000)
     }, [dispatch.cart]);
 
     const handleOptionChange = (event) => {
