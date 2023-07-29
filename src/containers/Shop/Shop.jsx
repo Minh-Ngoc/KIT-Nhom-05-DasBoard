@@ -4,7 +4,7 @@ import { Button } from "components/Button";
 import banner from "assets/images/shop/banner.svg";
 import vector from "assets/images/home/vector.svg";
 import vectorm from "assets/images/shop/vector.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Product } from "components/Product";
 import model from "assets/images/shop/model.svg";
 import { useEffect } from "react";
@@ -340,7 +340,9 @@ const MAX = 300;
 
 const Shop = () => {
   const dispatch = useDispatch();
+  const products = useSelector(state => state.products.listProduct)
   const [isFilterVisible, setIsFilterVisible] = useState(true);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   // Set state for data
   const [values, setValues] = useState([MIN, MAX]);
   const [brands, setBrands] = useState();
@@ -384,7 +386,9 @@ const Shop = () => {
   };
 
   // Handle reset
-  const resetFilter = () => {
+  const resetFilter = async() => {
+    await dispatch.products.fetchProducts();
+    setFilteredProducts(products?.length > 0 && products)
     setSelectedBrand("");
     setSelectedColor("");
     setSelectedSize("");
@@ -392,7 +396,6 @@ const Shop = () => {
   };
 
   // Handle filter data
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const applyFilter = () => {
     axios
       .get(
@@ -406,7 +409,6 @@ const Shop = () => {
   // Fetch data and apply filter
   useEffect(() => {
     // Fetch products when the component mounts and whenever the filters change
-    dispatch.products.fetchProducts();
     applyFilter();
     // eslint-disable-next-line
   }, []);
