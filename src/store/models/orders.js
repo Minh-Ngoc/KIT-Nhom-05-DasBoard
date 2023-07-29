@@ -91,20 +91,13 @@ export const orders = {
                 'Content-Type': 'application/json',
             };
 
-            console.log("token:", token)
-
-
             return await axios.post(CHECKOUT_ONLINE, null, { headers })
                 .then(res => {
-                    console.log("token trusy:", token)
                     dispatch.cart.fetchCart();
                 })
-                .catch(err => {
-                    console.log("token falsy:", token)
-                    console.log("err", err)
-                    toast.error("CHECKOUT FAILURE", {
+                .catch(err => toast.error("CHECKOUT FAILURE", {
                     position: toast.POSITION.TOP_CENTER,
-                })})
+                }))
         }
 
 
