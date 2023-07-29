@@ -4,11 +4,6 @@ import { CHECKOUT_CODE, CREATE_PAYMENT, CHECKOUT_ONLINE, GET_ORDERS, GET_ORDER_B
 import Cookies from "js-cookie";
 
 const userId = Cookies.get('userId');
-const token = Cookies.get('token');
-const headers = {
-    'Authorization': `Bearer ${token}`,
-    'Content-Type': 'application/json',
-};
 
 export const orders = {
     state: {
@@ -48,22 +43,27 @@ export const orders = {
                 }))
         },
         async checkoutCode() {
-            try {
+            const token = Cookies.get('token');
+            const headers = {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            };
 
+            try {
                 if (!token) {
+                    console.log("token falsy: ", token);
                     return toast.error("Token not found", {
                         position: toast.POSITION.TOP_CENTER,
                     });
                 }
+                console.log("token trusy: ", token);
 
                 await axios.post(CHECKOUT_CODE, null, { headers });
 
                 toast.success("CHECKOUT SUCCESSFULLY", {
                     position: toast.POSITION.TOP_CENTER,
                 });
-
                 dispatch.cart.fetchCart();
-
                 // Xử lý kết quả khi checkout thành công (nếu cần)
                 // Ví dụ: dispatch action để cập nhật trạng thái của ứng dụng sau khi checkout thành công
                 // dispatch({ type: 'checkoutSuccess', payload: response.data });
@@ -85,13 +85,26 @@ export const orders = {
                 }))
         },
         async checkoutOnline() {
+            const token = Cookies.get('token');
+            const headers = {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            };
+
+            console.log("token:", token)
+
+
             return await axios.post(CHECKOUT_ONLINE, null, { headers })
                 .then(res => {
+                    console.log("token trusy:", token)
                     dispatch.cart.fetchCart();
                 })
-                .catch(err => toast.error("CHECKOUT FAILURE", {
+                .catch(err => {
+                    console.log("token falsy:", token)
+                    console.log("err", err)
+                    toast.error("CHECKOUT FAILURE", {
                     position: toast.POSITION.TOP_CENTER,
-                }))
+                })})
         }
 
 

@@ -11,11 +11,10 @@ import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
-const userId = Cookies.get("userId")
-const token = Cookies.get("token");
-
 const Payment = () => {
     const page = "Create Payment";
+    const userId = Cookies.get("userId")
+    const token = Cookies.get("token");
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart.products);
@@ -67,6 +66,8 @@ const Payment = () => {
     }
 
     if(!token) {
+        console.log("token 1:", token);
+
         toast.warning("PLEASE LOGIN TO SHOP", {
             position: toast.POSITION.TOP_CENTER,
         });
