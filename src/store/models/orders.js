@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 import { CHECKOUT_CODE, CREATE_PAYMENT, CHECKOUT_ONLINE, GET_ORDERS, GET_ORDER_BY_ID } from "api";
 import Cookies from "js-cookie";
 
+const userId = Cookies.get('userId');
+
 export const orders = {
     state: {
         orderList: []
@@ -27,7 +29,6 @@ export const orders = {
     //   handle state changes with impure functions.
     //   use async/await for async actions
         fetchOrders() {
-            const userId = Cookies.get('userId');
             axios.get(GET_ORDERS, { params: { userId } })
                 .then(res => this.setOrders(res.data.orderwithusername))
                 .catch(err => toast.error("GET ORDERS FAILURE", {
@@ -50,10 +51,12 @@ export const orders = {
 
             try {
                 if (!token) {
+                    console.log("token falsy: ", token);
                     return toast.error("Token not found", {
                         position: toast.POSITION.TOP_CENTER,
                     });
                 }
+                console.log("token trusy: ", token);
 
                 await axios.post(CHECKOUT_CODE, null, { headers });
 
@@ -93,9 +96,12 @@ export const orders = {
 
             return await axios.post(CHECKOUT_ONLINE, null, { headers })
                 .then(res => {
+                    console.log("token trusy:", token)
                     dispatch.cart.fetchCart();
                 })
                 .catch(err => {
+                    console.log("token falsy:", token)
+                    console.log("err", err)
                     toast.error("CHECKOUT FAILURE", {
                     position: toast.POSITION.TOP_CENTER,
                 })})
