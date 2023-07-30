@@ -17,8 +17,10 @@ export const Orders = () => {
 
     //Handle open/close modal
     const handleOpenModal = (order) => {
-        setSelectedOrder({ modal: !selectedOrder.modal, order });
         dispatch.orders.getOrderById(order.orderid)
+        setTimeout(() => {
+            setSelectedOrder({ modal: !selectedOrder.modal, order })
+        }, 100);
     }
 
      // Create head cell
@@ -122,13 +124,13 @@ export const Orders = () => {
         };
     }
     // Create values data
-    const rowsPdDetail = orders.order?.map(order => {
+    const rowsPdDetail = orders.order && orders.order.map(order => {
         return createDataDetail(order.orderDetailId, order.productName, order.colorName, order.sizeName, order.quantityOrder, order.unitPrice)
     });
 
     // Title modal add order detail
     const TitleOrderModal = (
-        <h3 style={{ fontFamily: "'Oswald', sans-serif" }}>Order Detail</h3>
+        <p style={{ fontFamily: "'Oswald', sans-serif" }}>Order Detail</p>
     );
 
     const TableOrderDetail = (

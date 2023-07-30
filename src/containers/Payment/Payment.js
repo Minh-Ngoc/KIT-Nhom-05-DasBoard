@@ -59,9 +59,10 @@ const Payment = () => {
 
     const handleCheckout = () => {
         if(payment === 'online') {
-            dispatch.orders.createPayment()
+            dispatch.orders.createPayment();
         } else {
             dispatch.orders.checkoutCode();
+            return navigate("/shop");
         }
     }
 
@@ -71,7 +72,7 @@ const Payment = () => {
         toast.warning("PLEASE LOGIN TO SHOP", {
             position: toast.POSITION.TOP_CENTER,
         });
-        return navigate("/login");
+        setTimeout(() => navigate("/shop"), 3000);
     } 
 
     return (
