@@ -71,7 +71,9 @@ export const Orders = () => {
     );
 
     //* *************************  ORDER DETAIL ****************************************** *//
-
+    const handleSetModal = (state) => {
+        setSelectedOrder(state);
+    }
     const headCellsPdDetail = [
         {
             id: 'id',
@@ -155,7 +157,12 @@ export const Orders = () => {
                     />
                 </div>
             </div>
-            <Modal title={TitleOrderModal} content={TableOrderDetail} selectedOrder={selectedOrder} />
+            <Modal 
+                title={TitleOrderModal} 
+                content={TableOrderDetail} 
+                selectedOrder={selectedOrder} 
+                handleSetModal={handleSetModal}
+            />
         </div>
     )
 }
