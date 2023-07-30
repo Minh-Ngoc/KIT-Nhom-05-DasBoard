@@ -62,7 +62,7 @@ const Payment = () => {
             dispatch.orders.createPayment();
         } else {
             dispatch.orders.checkoutCode();
-            return navigate("/shop");
+            return navigate("/account/orders");
         }
     }
 
@@ -72,7 +72,7 @@ const Payment = () => {
         toast.warning("PLEASE LOGIN TO SHOP", {
             position: toast.POSITION.TOP_CENTER,
         });
-        setTimeout(() => navigate("/shop"), 3000);
+        setTimeout(() => navigate("/login"), 3000);
     } 
 
     return (
