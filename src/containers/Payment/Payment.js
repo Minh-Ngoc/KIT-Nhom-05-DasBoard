@@ -72,7 +72,7 @@ const Payment = () => {
         toast.warning("PLEASE LOGIN TO SHOP", {
             position: toast.POSITION.TOP_CENTER,
         });
-        setTimeout(() => navigate("/login"), 3000);
+        setTimeout(() => navigate("/login"), 2000);
     } 
 
     return (
