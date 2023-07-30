@@ -16,11 +16,9 @@ export const Orders = () => {
     }, [dispatch.orders])
 
     //Handle open/close modal
-    const handleOpenModal = (order) => {
-        dispatch.orders.getOrderById(order.orderid)
-        setTimeout(() => {
-            setSelectedOrder({ modal: !selectedOrder.modal, order })
-        }, 100);
+    const handleOpenModal = async(order) => {
+        await dispatch.orders.getOrderById(order.orderid)
+        setSelectedOrder({ modal: !selectedOrder.modal, order })
     }
 
      // Create head cell
@@ -88,6 +86,18 @@ export const Orders = () => {
             label: 'Name',
         },
         {
+            id: 'color',
+            numeric: 'center',
+            disablePadding: false,
+            label: 'Color',
+        },
+        {
+            id: 'size',
+            numeric: 'center',
+            disablePadding: false,
+            label: 'Size',
+        },
+        {
             id: 'quantity',
             numeric: 'center',
             disablePadding: false,
@@ -98,18 +108,6 @@ export const Orders = () => {
             numeric: 'center',
             disablePadding: false,
             label: 'Price',
-        },
-        {
-            id: 'size',
-            numeric: 'center',
-            disablePadding: false,
-            label: 'Size',
-        },
-        {
-            id: 'color',
-            numeric: 'center',
-            disablePadding: false,
-            label: 'Color',
         },
     ];
     // Create keys data

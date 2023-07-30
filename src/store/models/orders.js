@@ -35,8 +35,8 @@ export const orders = {
                     position: toast.POSITION.TOP_CENTER,
                 }))
         },
-        getOrderById(orderId) {
-            axios.get(GET_ORDER_BY_ID, { params: { orderIds: orderId } })
+        async getOrderById(orderId) {
+            await axios.get(GET_ORDER_BY_ID, { params: { orderIds: orderId } })
                 .then(res => this.setOrder(res.data.orderwithusername))
                 .catch(err => toast.error("GET ORDERS FAILURE", {
                     position: toast.POSITION.TOP_CENTER,
