@@ -143,8 +143,8 @@ const QueryProducts = styled.div`
     flex-wrap: wrap;
   }
   .size {
-    width: 46px;
-    height: 46px;
+    min-width: 46px;
+    width: auto;
     border: 1px solid #c4c4c4;
     color: #828282;
     font-size: 12.5px;
@@ -165,7 +165,12 @@ const QueryProducts = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: none;
+  }
+  .colors {
+    width: auto;
+  }
+  .colors > button, .color > button {
+    border: 1px solid #C4C4C4;
   }
   .color.selected {
     border: 2px solid #fff;
